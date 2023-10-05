@@ -5,8 +5,8 @@ export default function About() {
     <div className="max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:px-8 min-h-[70vh]">
       <h1 className="text-2xl font-bold mb-4">About</h1>
       <p className="mb-2">
-        <b>Connect My Family</b> is a small open source project created by
-        Sachin Sharma to help familes connect with peoples trapped/affected by
+        <b>Connect My Family</b> is a small open-source project created by
+        Sachin Sharma to help people connect with families trapped/affected by
         the Sikkim flood.
       </p>
       <p className="mb-2">
