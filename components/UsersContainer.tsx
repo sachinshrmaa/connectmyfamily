@@ -41,15 +41,18 @@ const UsersContainer = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {loading ? (
           <p>Loading...</p>
-        ) : (
+        ) : users.length > 0 ? (
           users.map((user) => (
             <UserCard
               key={user.id}
               name={user.name}
               phone={user.phone}
-              description={user.username}
+              address={user.address}
+              description={user.description}
             />
           ))
+        ) : (
+          <p>No users found.</p>
         )}
       </div>
     </div>
