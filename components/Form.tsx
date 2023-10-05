@@ -1,76 +1,117 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 
-const Form = () => {
+export default function Test() {
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [message, setMessage] = useState("");
+  const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [file, setFile] = useState(null);
+  const [description, setDescription] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  // const [file, setFile] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // TODO: Submit the form data to your server
+    if (!name || !phone || !address) {
+      setErrorMessage("all fields are required.");
+      return;
+    }
+
+    setSubmitting(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ name, phone, address, description }),
+      });
+
+      if (res.ok) {
+        setSuccessMessage("User created successfully!");
+        setName("");
+        setPhone("");
+        setAddress("");
+        setDescription("");
+      } else {
+        setErrorMessage("Error creating user.");
+      }
+    } catch (error) {
+      setErrorMessage("An error occurred.");
+      console.log(error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <small className="font-semibold">Enter name*</small>
-      <input
-        type="text"
-        name="name"
-        placeholder="Enter full name"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+    <div>
+      <h1>Add User Form</h1>
+      {successMessage && <p className="text-green-600">{successMessage}</p>}
+      {errorMessage && <p className="text-red-600">{errorMessage}</p>}
 
-      <small className="font-semibold">Enter phone*</small>
-      <input
-        type="text"
-        name="phoneNumber"
-        placeholder="Enter phone number"
-        value={phoneNumber}
-        onChange={(event) => setPhoneNumber(event.target.value)}
-        className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+      <form onSubmit={handleSubmit}>
+        <small className="font-semibold">Enter name*</small>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter full name"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      <small className="font-semibold">Enter address*</small>
-      <textarea
-        name="address"
-        placeholder="Enter address"
-        value={address}
-        onChange={(event) => setAddress(event.target.value)}
-        className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+        <small className="font-semibold">Enter phone*</small>
+        <input
+          type="text"
+          name="phone"
+          placeholder="Enter phone number"
+          value={phone}
+          onChange={(event) => setPhone(event.target.value)}
+          className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      <small className="font-semibold">Enter message*</small>
-      <textarea
-        name="message"
-        placeholder="Enter message"
-        value={message}
-        onChange={(event) => setMessage(event.target.value)}
-        className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+        <small className="font-semibold">Enter address*</small>
+        <textarea
+          name="address"
+          placeholder="Enter address"
+          value={address}
+          onChange={(event) => setAddress(event.target.value)}
+          className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      <small className="font-semibold">Uplaod photo*</small>
-      <input
-        type="file"
-        name="file"
-        onChange={(event) => setFile(event.target.files[0])}
-        className="block w-full py-2 mb-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+        <small className="font-semibold">Enter message*</small>
+        <textarea
+          name="message"
+          placeholder="Enter message"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      <button
-        type="submit"
-        className="bg-green-700  hover:bg-green-900  text-white py-2 px-6 rounded-md"
-      >
-        Submit
-      </button>
-    </form>
+        {/* <small className="font-semibold">Uplaod photo*</small>
+        <input
+          type="file"
+          name="file"
+          onChange={(event) => setFile(event.target.files[0])}
+          className="block w-full py-2 mb-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        /> */}
+
+        <button
+          className={`bg-green-700  hover:bg-green-900  text-white py-2 px-6 rounded-md ${
+            submitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          disabled={submitting}
+        >
+          {submitting ? "Submitting..." : "Submit"}
+        </button>
+      </form>
+    </div>
   );
-};
-
-export default Form;
+}
