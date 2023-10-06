@@ -51,13 +51,14 @@ const UsersContainer = () => {
 
   return (
     <div>
-      <div className="py-4">
+      <div className="flex py-4">
+        <i className="bi bi-search px-4 py-2 border bg-gray-100 rounded-l-lg"></i>
         <input
           type="text"
           placeholder="Search users by name"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="border rounded px-2 py-2 bg-gray-100 w-[100%]"
+          className="border px-2 py-2 rounded-r-lg bg-gray-100 w-[100%]"
         />
       </div>
 
