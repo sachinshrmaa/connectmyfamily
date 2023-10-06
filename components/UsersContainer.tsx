@@ -5,7 +5,7 @@ import UserCard from "./UserCard";
 
 const getUsers = async () => {
   try {
-    const res = await fetch("https://connectmyfamily.vercel.app/api/users", {
+    const res = await fetch("http://localhost:3000/api/users", {
       cache: "no-store",
     });
 

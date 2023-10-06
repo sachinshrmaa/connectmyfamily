@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
 
 export const metadata = {
