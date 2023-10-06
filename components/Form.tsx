@@ -34,13 +34,13 @@ export default function Test() {
       });
 
       if (res.ok) {
-        setSuccessMessage("User created successfully!");
+        setSuccessMessage("User added successfully!");
         setName("");
         setPhone("");
         setAddress("");
         setDescription("");
       } else {
-        setErrorMessage("Error creating user.");
+        setErrorMessage("Error adding user.");
       }
     } catch (error) {
       setErrorMessage("An error occurred.");
@@ -52,12 +52,11 @@ export default function Test() {
 
   return (
     <div>
-      <h1>Add User Form</h1>
       {successMessage && <p className="text-green-600">{successMessage}</p>}
       {errorMessage && <p className="text-red-600">{errorMessage}</p>}
 
       <form onSubmit={handleSubmit}>
-        <small className="font-semibold">Enter name*</small>
+        <small className="font-semibold">Trapped person name*</small>
         <input
           type="text"
           name="name"
@@ -67,17 +66,17 @@ export default function Test() {
           className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
-        <small className="font-semibold">Enter phone*</small>
+        <small className="font-semibold">Enter your phone*</small>
         <input
           type="text"
           name="phone"
-          placeholder="Enter phone number"
+          placeholder="Enter your phone"
           value={phone}
           onChange={(event) => setPhone(event.target.value)}
           className="block w-full px-4 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
-        <small className="font-semibold">Enter address*</small>
+        <small className="font-semibold">Enter trapped address*</small>
         <textarea
           name="address"
           placeholder="Enter address"
