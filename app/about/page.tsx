@@ -15,6 +15,14 @@ export default function About() {
       <p>
         <b>mail:</b> mail.sachinshrmaa@gmail.com
       </p>
+
+      <p className="my-2">Contribute to this project source code.</p>
+      <p>
+        <b>GitHub:</b>{" "}
+        <a href="https://github.com/sachinshrmaa/connectmyfamily" className="text-blue-500">
+          Connect my family repo.
+        </a>
+      </p>
     </div>
   );
 }
