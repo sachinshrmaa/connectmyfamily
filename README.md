@@ -1,9 +1,9 @@
 # Connect My Family
 
-A small project to connect familes trapped/affected by the Sikkim flood.
+A small open source project to connect familes trapped/affected by the Sikkim flood.
 
-### Installation locally
-
+## Installation locally
+---
 To run the Connect My Family project locally, follow these steps:
 
 1.  Install [NodeJs](https://www.nodejs.org/), [MongoDB](https://www.mongodb.com/) on your machine.
@@ -24,7 +24,8 @@ npm run dev
 
 7.  Access the project
 
-### How to contribute - Guidelines
+## How to contribute - Guidelines
+---
 
 I welcome your interest in contributing to our open source project!
 
