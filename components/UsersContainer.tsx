@@ -24,6 +24,7 @@ const getUsers = async () => {
 const UsersContainer = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -36,13 +37,35 @@ const UsersContainer = () => {
     fetchData();
   }, []);
 
+  const filterUsers = () => {
+    if (!searchQuery) {
+      return users;
+    }
+
+    return users.filter((user) =>
+      user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
+  const filteredUsers = filterUsers();
+
   return (
     <div>
+      <div className="py-4">
+        <input
+          type="text"
+          placeholder="Search users by name"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="border rounded px-2 py-2 bg-gray-100 w-[100%]"
+        />
+      </div>
+
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {loading ? (
           <p>Loading...</p>
-        ) : users.length > 0 ? (
-          users.map((user) => (
+        ) : filteredUsers.length > 0 ? (
+          filteredUsers.map((user) => (
             <UserCard
               key={user.id}
               name={user.name}
