@@ -67,6 +67,7 @@ const UsersContainer = () => {
               phone={user.phone}
               address={user.address}
               description={user.description}
+              image={user.image}
             />
           ))
         )}

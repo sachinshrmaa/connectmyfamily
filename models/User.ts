@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a description"],
   },
+  image: {
+    type: String,
+    required: true,
+  },
 });
 
 const User = mongoose.models.UserDB || mongoose.model("UserDB", userSchema);

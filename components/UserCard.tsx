@@ -1,10 +1,10 @@
 import Image from "next/image";
 
-const UserCard = ({ name, phone, description, address }) => {
+const UserCard = ({ name, phone, description, address, image }) => {
   return (
     <div className="border rounded hover:bg-gray-50">
       <Image
-        src="/default-img.jpg"
+        src={image}
         className="w-full"
         alt={name}
         height={450}
