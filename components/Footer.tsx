@@ -7,8 +7,12 @@ const Footer = () => {
         <div className="px-2 py-1 flex flex-col justify-between">
           <p id="logo">Connect my Family</p>
 
-          <div>
+          <div className="mt-2">
             <p>An open source project</p>
+            <small className="text-gray-700">
+              Made with ❤ by{" "}
+              <a href="https://www.instagram.com/sachinshrmaa" className="text-green-900">Sachin</a>
+            </small>
           </div>
         </div>
       </div>
