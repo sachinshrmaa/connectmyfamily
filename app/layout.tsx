@@ -1,5 +1,8 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
 
@@ -19,6 +22,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
+        <ToastContainer />
         <Footer />
       </body>
     </html>

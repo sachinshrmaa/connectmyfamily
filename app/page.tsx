@@ -28,8 +28,6 @@ export default function Home() {
           <h3 className="text-2xl font-semibold mb-4">Trapped Peoples</h3>
           <UsersContainer />
         </div>
-
-        
       </div>
     </div>
   );

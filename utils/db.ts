@@ -15,7 +15,7 @@ export async function connect() {
       );
       process.exit();
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log("Something went wrong while connecting to DB!");
     console.log(error);
   }

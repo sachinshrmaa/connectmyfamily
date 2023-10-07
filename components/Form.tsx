@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Form() {
   const [user, setUser] = useState({
@@ -17,8 +18,15 @@ export default function Form() {
     try {
       setButtonDisabled(true);
       const res = await axios.post("/api/users", user);
+      toast.success("User added successful!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       console.log("User added successful", res.data);
     } catch (error: any) {
+      console.log(error.message);
+      toast.error("Please fill all the fields!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } finally {
       setButtonDisabled(false);
     }
