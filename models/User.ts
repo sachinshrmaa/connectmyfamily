@@ -1,10 +1,17 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  phone: { type: Number, required: true },
-  address: { type: String, required: true },
-  description: { type: String, required: true },
+  name: { type: String, required: [true, "Please provide a name"] },
+  phone: {
+    type: Number,
+    unique: true,
+    required: [true, "Please provide a phone number"],
+  },
+  address: { type: String, required: [true, "Please provide an address"] },
+  description: {
+    type: String,
+    required: [true, "Please provide a description"],
+  },
 });
 
 const User = mongoose.models.UserDB || mongoose.model("UserDB", userSchema);

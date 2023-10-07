@@ -1,3 +1,22 @@
-const { username, password } = process.env;
+import mongoose from "mongoose";
 
-export const connectionStr = `mongodb+srv://${username}:${password}@connectmyfamily.9ypuhvn.mongodb.net/connectmyfamilyDB?retryWrites=true&w=majority`;
+export async function connect() {
+  try {
+    mongoose.connect(process.env.MONGO_URI!);
+    const connection = mongoose.connection;
+
+    connection.on("connected", () => {
+      console.log("MongoDB connected successfully");
+    });
+
+    connection.on("error", (err) => {
+      console.log(
+        "MongoDB connection error. Please make sure MongoDB is running. " + err
+      );
+      process.exit();
+    });
+  } catch (error) {
+    console.log("Something went wrong while connecting to DB!");
+    console.log(error);
+  }
+}

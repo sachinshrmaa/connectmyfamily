@@ -1,17 +1,16 @@
-import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
-import { connectionStr } from "../../../utils/db";
+import { connect } from "../../../utils/db";
 import User from "../../../models/User";
+
+connect();
 
 export async function GET() {
   try {
-    await mongoose.connect(connectionStr);
-    const users = await User.find();
-    await mongoose.connection.close();
-    return NextResponse.json({ users });
-  } catch (error) {
-    // Handle errors gracefully
-    console.error("Error:", error);
+    // Get all the users from the DB
+    const user = await User.find();
+    return NextResponse.json(user, { status: 200 });
+  } catch (error: any) {
+    // console.log("Error", error.message);
     return NextResponse.json(
       { result: "Error", error: error.message },
       { status: 500 }
@@ -20,11 +19,40 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const userData = await req.json();
+  try {
+    const userData = await req.json();
+    const { name, phone, address, description } = userData;
 
-  await mongoose.connect(connectionStr);
+    //check if user already exists
+    const user = await User.findOne({ phone });
 
-  const newUser = new User(userData);
-  const result = await newUser.save();
-  return NextResponse.json({ result });
+    if (user) {
+      return NextResponse.json(
+        { error: "User already exists" },
+        { status: 400 }
+      );
+    }
+
+    const newUser = new User({
+      name,
+      phone,
+      address,
+      description,
+    });
+
+    const savedUser = await newUser.save();
+    // console.log(savedUser);
+
+    return NextResponse.json({
+      message: "User added successfully",
+      success: true,
+      savedUser,
+    });
+  } catch (error: any) {
+    // console.log("Error", error.message);
+    return NextResponse.json(
+      { result: "Error", error: error.message },
+      { status: 500 }
+    );
+  }
 }
