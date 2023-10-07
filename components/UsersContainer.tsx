@@ -2,21 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import UserCard from "./UserCard";
+import axios from "axios";
 
 const getUsers = async () => {
   try {
-    const res = await fetch("/api/users", {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch users");
-    }
-
-    const responseData = await res.json();
-    return responseData.users;
-  } catch (error) {
-    console.log("Error loading users: ", error);
+    const res = await axios.get("/api/users");
+    console.log(res.data);
+    return res.data;
+  } catch (error: any) {
+    console.log(error.message);
     return [];
   }
 };
@@ -64,8 +58,8 @@ const UsersContainer = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {loading ? (
-          <p>Loading...</p>
-        ) : filteredUsers.length > 0 ? (
+          <p>loading...</p>
+        ) : (
           filteredUsers.map((user) => (
             <UserCard
               key={user.id}
@@ -75,8 +69,6 @@ const UsersContainer = () => {
               description={user.description}
             />
           ))
-        ) : (
-          <p>No users found.</p>
         )}
       </div>
     </div>
