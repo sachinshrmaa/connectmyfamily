@@ -34,7 +34,7 @@ export default function Form() {
 
   return (
     <div>
-      <label htmlFor="name">Trapped person name*</label>
+      <label className="text-sm text-gray-700 " htmlFor="name">Trapped person name*</label>
       <input
         type="text"
         name="name"
@@ -46,7 +46,7 @@ export default function Form() {
         className="block w-full px-2 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
-      <label htmlFor="phone">Enter your phone*</label>
+      <label className="text-sm text-gray-700 " htmlFor="phone">Enter your phone*</label>
       <input
         type="number"
         name="phone"
@@ -58,7 +58,7 @@ export default function Form() {
         className="block w-full px-2 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
-      <label htmlFor="address">Enter trapped address*</label>
+      <label className="text-sm text-gray-700 " htmlFor="address">Enter trapped address*</label>
       <textarea
         name="address"
         placeholder="Enter address"
@@ -69,7 +69,7 @@ export default function Form() {
         className="block w-full px-2 py-2 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
-      <label htmlFor="description">Enter description*</label>
+      <label className="text-sm text-gray-700 " htmlFor="description">Enter description*</label>
       <textarea
         name="description"
         placeholder="Describe the situation"
