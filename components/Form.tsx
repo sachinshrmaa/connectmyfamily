@@ -55,7 +55,7 @@ export default function Form() {
   };
 
   return (
-    <div className="p-6">
+    <div>
       <label className="text-sm text-gray-700 " htmlFor="name">
         Trapped person name*
       </label>
