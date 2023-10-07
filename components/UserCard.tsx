@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const UserCard = ({ name, phone, description, address, image }) => {
   return (
-    <div className="border rounded hover:bg-gray-50">
+    <div className="border rounded-md hover:bg-gray-50">
       <Image
         src={image}
         className="w-full"
@@ -11,7 +11,7 @@ const UserCard = ({ name, phone, description, address, image }) => {
         width={300}
       />
       <div className="p-2 ">
-        <h2 className="text-1xl font-semibold">{name}</h2>
+        <h2 className="text-1xl font-normal mt-2">{name}</h2>
         <div className="flex gap-2 my-1">
           <i className="bi bi-telephone"></i>
           <a href={`tel:${phone}`} className="text-blue-400">
