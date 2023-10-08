@@ -21,6 +21,37 @@ export default function Form() {
 
   const uploadFile = async () => {
     if (imageUpload == null) return;
+
+    // Validate file type
+    const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+    const fileType = imageUpload["type"];
+    if (!validImageTypes.includes(fileType)) {
+      toast.error("Please upload a valid image file.!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
+    // Check file size
+    const fileSize = imageUpload["size"];
+    const maxSize = 1 * 1024 * 1024; // 1MB
+    if (fileSize > maxSize) {
+      toast.error("File size exceeds 1 MB.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
+    // check file extension
+    const fileExtension = imageUpload["name"].split(".").pop();
+    const validFileExtensions = ["jpg", "jpeg", "png", "gif"];
+    if (!validFileExtensions.includes(fileExtension)) {
+      toast.error("Please upload a valid image file.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
     const imageRef = ref(storage, `images/${v4() + imageUpload.name}`);
 
     try {
