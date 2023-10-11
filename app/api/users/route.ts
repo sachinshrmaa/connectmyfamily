@@ -21,7 +21,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const userData = await req.json();
-    const { name, phone, address, description, image } = userData;
+    const { name, phone, address, description, image, status } = userData;
 
     //check if user already exists
     const user = await User.findOne({ phone });
@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
       address,
       description,
       image,
+      status,
     });
 
     const savedUser = await newUser.save();
