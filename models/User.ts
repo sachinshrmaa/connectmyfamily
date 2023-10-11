@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { trusted } from "mongoose";
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide a name"] },
@@ -15,12 +15,13 @@ const userSchema = new mongoose.Schema({
   status: {
     type: String,
     required: [true, "Please provide a status"],
+    default: "Missing",
   },
   image: {
     type: String,
     required: false,
     default:
-      "https://firebasestorage.googleapis.com/v0/b/connectmyfamilysikkim.appspot.com/o/images%2Fdefualt_user_image.jpg?alt=media&token=83f0a374-e844-4a93-b75f-7ce37642715a&_gl=1*mos2zz*_ga*Njc1MTQxNDUuMTY5NjY5Nzg5NA..*_ga_CW55HF8NVT*MTY5NjY5NzkxNS4xLjEuMTY5NjcwMzA2MS4yNi4wLjA.",
+      "https://firebasestorage.googleapis.com/v0/b/sikkimconnectmyfamily.appspot.com/o/images%2Fdefault_img.png?alt=media&token=cc6ce384-3bb0-4a1e-81ca-c83219feee1f&_gl=1*992oe1*_ga*Njc1MTQxNDUuMTY5NjY5Nzg5NA..*_ga_CW55HF8NVT*MTY5NzA0Nzg5OC41LjEuMTY5NzA1MDg2NS40MC4wLjA.",
   },
 });
 
