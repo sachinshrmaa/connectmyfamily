@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: false,
+    required: true,
     default:
       "https://firebasestorage.googleapis.com/v0/b/sikkimconnectmyfamily.appspot.com/o/images%2Fdefault_img.png?alt=media&token=cc6ce384-3bb0-4a1e-81ca-c83219feee1f&_gl=1*992oe1*_ga*Njc1MTQxNDUuMTY5NjY5Nzg5NA..*_ga_CW55HF8NVT*MTY5NzA0Nzg5OC41LjEuMTY5NzA1MDg2NS40MC4wLjA.",
   },
